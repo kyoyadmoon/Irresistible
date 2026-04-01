@@ -18,18 +18,8 @@ export function ToastProvider({ children }) {
   }, [])
 
   return (
-    <ToastContext.Provider value={showToast}>
+    <ToastContext.Provider value={{ current, showToast }}>
       {children}
-      <div className="fixed bottom-[12vh] left-1/2 -translate-x-1/2 z-[1000] pointer-events-none">
-        {current && (
-          <div
-            key={current.id}
-            className="animate-toast-pop bg-gray-800/90 backdrop-blur-md text-white px-10 py-5 rounded-2xl font-quicksand font-semibold text-xl shadow-[0_8px_30px_rgba(0,0,0,0.25)] max-w-[85vw] text-center leading-relaxed"
-          >
-            {current.message}
-          </div>
-        )}
-      </div>
     </ToastContext.Provider>
   )
 }
@@ -37,5 +27,22 @@ export function ToastProvider({ children }) {
 export function useToast() {
   const ctx = useContext(ToastContext)
   if (!ctx) throw new Error('useToast must be used within ToastProvider')
-  return ctx
+  return ctx.showToast
+}
+
+export function ToastViewport({ className = '' }) {
+  const ctx = useContext(ToastContext)
+  if (!ctx) throw new Error('ToastViewport must be used within ToastProvider')
+  if (!ctx.current) return null
+
+  return (
+    <div className={className}>
+      <div
+        key={ctx.current.id}
+        className="animate-toast-pop bg-gray-800/90 backdrop-blur-md text-white px-[clamp(1.5rem,5vw,2.5rem)] py-[clamp(0.75rem,2.5vw,1.25rem)] rounded-2xl font-quicksand font-semibold text-[clamp(0.9rem,3vw,1.25rem)] shadow-[0_8px_30px_rgba(0,0,0,0.25)] max-w-[85vw] text-center leading-relaxed"
+      >
+        {ctx.current.message}
+      </div>
+    </div>
+  )
 }

@@ -15,9 +15,14 @@ export default function Runaway({ config, cardRef, advanceStage, triggerCelebrat
     justDodged.current = true
     setTimeout(() => { justDodged.current = false }, 400)
 
-    const rect = cardRef.current.getBoundingClientRect()
-    const maxX = rect.width - 120
-    const maxY = 120 - 50
+    const boundsRect =
+      noRef.current.offsetParent?.getBoundingClientRect() ??
+      noRef.current.parentElement?.getBoundingClientRect() ??
+      cardRef.current.getBoundingClientRect()
+    const buttonRect = noRef.current.getBoundingClientRect()
+    const maxX = Math.max(0, boundsRect.width - buttonRect.width)
+    const maxY = Math.max(0, boundsRect.height - buttonRect.height)
+
     noRef.current.style.position = 'absolute'
     noRef.current.style.left = `${Math.random() * maxX}px`
     noRef.current.style.top = `${Math.random() * maxY}px`

@@ -14,7 +14,7 @@ export const YesButton = forwardRef(function YesButton({ onClick, className = ''
     <button
       ref={ref}
       onClick={onClick}
-      className={`${BASE} bg-mint text-white shadow-[0_4px_15px_rgba(126,207,160,0.4)] hover:bg-mint-dark hover:scale-105 hover:shadow-[0_6px_20px_rgba(126,207,160,0.6)] px-9 py-3.5 text-[clamp(1rem,3vw,1.2rem)] min-w-[120px] ${className}`}
+      className={`${BASE} bg-mint text-white shadow-[0_4px_15px_rgba(126,207,160,0.4)] hover:bg-mint-dark hover:scale-105 hover:shadow-[0_6px_20px_rgba(126,207,160,0.6)] px-9 py-3.5 text-[clamp(1rem,3vw,1.2rem)] min-w-[100px] ${className}`}
       {...props}
     >
       {children}
@@ -29,7 +29,7 @@ export const NoButton = forwardRef(function NoButton({ onClick, className = '', 
     <button
       ref={ref}
       onClick={onClick}
-      className={`${BASE} bg-coral text-white shadow-[0_4px_15px_rgba(255,107,107,0.4)] hover:bg-coral-dark px-9 py-3.5 text-[clamp(1rem,3vw,1.2rem)] min-w-[120px] ${className}`}
+      className={`${BASE} bg-coral text-white shadow-[0_4px_15px_rgba(255,107,107,0.4)] hover:bg-coral-dark px-9 py-3.5 text-[clamp(1rem,3vw,1.2rem)] min-w-[100px] ${className}`}
       {...props}
     >
       {children}
@@ -43,7 +43,7 @@ export const GrownYesButton = forwardRef(function GrownYesButton({ onClick, clas
     <YesButton
       ref={ref}
       onClick={onClick}
-      className={`!text-[clamp(1.4rem,4vw,1.7rem)] !px-12 !py-4.5 animate-pulse-btn ${className}`}
+      className={`!text-[clamp(1.4rem,4vw,1.7rem)] !px-[clamp(2rem,6vw,3rem)] !py-4.5 animate-pulse-btn ${className}`}
       {...props}
     >
       {children}

@@ -85,7 +85,6 @@ export const gameConfig = {
         placeholder: 'Answer...',
         wrongAnswer: 'Wrong!',
         submitButton: 'Submit',
-        timerLabel: "Time you've spent not buying me a Switch 2:",
       },
       tuning: { wrongAttemptsBeforeHint: 3 },
     },

@@ -306,7 +306,6 @@ function level5_mathGate() {
   const b = 100 + Math.floor(Math.random() * 900);
   const answer = a * b;
   let attempts = 0;
-  const startTime = Date.now();
 
   levelExtra.innerHTML = `
     <div class="math-gate">
@@ -315,16 +314,8 @@ function level5_mathGate() {
         <input type="number" id="mathInput" placeholder="Answer..." />
         <button id="mathSubmit">Submit</button>
       </div>
-      <p class="math-timer" id="mathTimer">Time you've spent not buying me a Switch 2: 0s</p>
     </div>
   `;
-
-  const timerId = setInterval(() => {
-    const elapsed = Math.floor((Date.now() - startTime) / 1000);
-    const timerEl = document.getElementById('mathTimer');
-    if (timerEl) timerEl.textContent = `Time you've spent not buying me a Switch 2: ${elapsed}s`;
-  }, 1000);
-  registerTimer(timerId);
 
   document.getElementById('mathSubmit').addEventListener('click', () => {
     const input = document.getElementById('mathInput');
@@ -334,7 +325,6 @@ function level5_mathGate() {
     if (val === answer) {
       btnNo.style.display = '';
       levelExtra.innerHTML = '';
-      clearInterval(timerId);
       // Advance to next level
       currentLevel++;
       if (currentLevel > totalLevels) { triggerCelebration(); return; }

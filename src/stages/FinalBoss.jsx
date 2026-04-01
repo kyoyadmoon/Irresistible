@@ -28,10 +28,10 @@ export default function FinalBoss({ config, cardRef, triggerCelebration }) {
   }
 
   return (
-    <div className="flex flex-col items-center gap-4 relative min-h-[120px]">
+    <div className="flex w-full flex-col items-center gap-4 relative min-h-[120px]">
       <YesButton
         onClick={triggerCelebration}
-        className="!text-[clamp(2rem,6vw,3rem)] !px-16 !py-8 !min-w-[60vw] animate-pulse-btn animate-rainbow-glow"
+        className="!text-[clamp(2rem,6vw,3rem)] !px-[clamp(2rem,8vw,4rem)] !py-[clamp(1.5rem,4vw,2rem)] !min-w-[min(60vw,100%)] animate-pulse-btn animate-rainbow-glow"
       />
       {/* Invisible NO button */}
       <button

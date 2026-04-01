@@ -1,10 +1,23 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { YesButton, NoButton } from '../components/Buttons'
 
 const STEPS = 4
 
 export default function ShrinkGrow({ config, advanceStage, triggerCelebration }) {
   const [step, setStep] = useState(0)
+  const [isNarrowMobile, setIsNarrowMobile] = useState(
+    () => typeof window !== 'undefined' && window.innerWidth < 480
+  )
+
+  useEffect(() => {
+    const onResize = () => {
+      setIsNarrowMobile(window.innerWidth < 480)
+    }
+
+    onResize()
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
 
   function handleNo() {
     const next = step + 1
@@ -15,8 +28,8 @@ export default function ShrinkGrow({ config, advanceStage, triggerCelebration })
     setStep(next)
   }
 
-  // YES grows: scale from 1 → 1.8, padding/font increase
-  const yesScale = 1 + step * (0.8 / (STEPS - 1))
+  const maxYesScale = isNarrowMobile ? 1.4 : 1.8
+  const yesScale = 1 + step * ((maxYesScale - 1) / (STEPS - 1))
   // NO shrinks: scale from 1 → 0.35
   const noScale = 1 - step * (0.65 / (STEPS - 1))
   const noOpacity = 1 - step * (0.4 / (STEPS - 1))
